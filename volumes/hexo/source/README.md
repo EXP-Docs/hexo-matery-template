@@ -14,5 +14,5 @@
 - 线上生产环境： https://exp-blog.com 或 https://lyy289065406.github.io/articles
 
 
-> 注：可使用此模版搭建你的个人博客：https://github.com/lyy289065406/hexo-template
+> 注：可使用此模版搭建你的个人博客：https://github.com/lyy289065406/hexo-matery-template
 
