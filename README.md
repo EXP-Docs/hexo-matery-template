@@ -49,9 +49,9 @@
 
 1. 运行环境: `bin/run.sh|ps1` （仅一次）
 2. 按需重复执行: 
-  - 构建 hexo 内容: `hexo/generate.sh|ps1`
-  - 运行 hexo 网站: `hexo/run.sh|ps1`
-  - 查看效果: [http://127.0.0.1:4000](http://127.0.0.1:4000)
+    - 构建 hexo 内容: `hexo/generate.sh|ps1`
+    - 运行 hexo 网站: `hexo/run.sh|ps1`
+    - 查看效果: [http://127.0.0.1:4000](http://127.0.0.1:4000)
 3. 进入环境终端: `bin/terminal.sh|ps1` （按需）
 4. 停止环境: `bin/stop.sh|ps1` （按需）
 
