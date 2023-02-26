@@ -1,0 +1,55 @@
+name: Automatically deploy hexo blog to Gitee
+on: 
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+  workflow_dispatch:
+    branches:
+      - master
+
+      
+jobs:
+  build-and-deploy-gitee: 
+    runs-on: ubuntu-latest 
+        
+    steps:
+    - name: Checkout Repository master branch
+      uses: actions/checkout@v2
+
+    - name: Setup Git Infomation
+      run: |-
+        git config --global user.name "${{ vars._GIT_USER }}"
+        git config --global user.email "${{ vars._GIT_MAIL }}"
+
+    - name: Setup Deploy Private Key
+      env:
+        HEXO_DEPLOY_PRIVATE_KEY: ${{ secrets.DEPLOY_PRIVATE_KEY }}
+      run: |
+        mkdir -p ~/.ssh/
+        echo "$HEXO_DEPLOY_PRIVATE_KEY" > ~/.ssh/id_rsa 
+        chmod 400 ~/.ssh/id_rsa
+        ssh-keyscan gitee.com >> ~/.ssh/known_hosts
+
+    # 运行 nodejs 的 docker 环境
+    - name: Run Hexo Environment
+      run: |
+        bin/run.sh -d "${{ vars._GITEE_DOMAIN }}" -u "${{ vars._GIT_USER }}" -m "${{ vars._GIT_MAIL }}" -o "${{ vars._GITEE_DEPLOY_REPO_OWNER }}" -n "${{ vars._GITEE_DEPLOY_REPO_NAME }}"
+
+    # 构建 Hexo 内容并发布到 Gitee 仓库
+    # 检查状态的超时时间根据实际流水线耗时设置（不要设置太长，Github 每个月只有 2000 分钟的额度）
+    - name: Build and Deploy Hexo 
+      run: |
+        hexo/generate_deploy.sh -d ON
+        timeout ${{ vars.RUN_TIMEOUT }} hexo/check_flag.sh
+
+    # Gitee Page 不会自动刷新，需要用爬虫登录刷新
+    - name: Build Gitee Pages
+      uses: lyy289065406/gitee-pages-action@master
+      with:
+        gitee-username: ${{ secrets._GITEE_USER }}
+        gitee-password: ${{ secrets._GITEE_PASS }}
+        gitee-repo: ${{ vars._GITEE_DEPLOY_REPO_OWNER }}/${{ vars._GITEE_DEPLOY_REPO_NAME }}
+        branch: master

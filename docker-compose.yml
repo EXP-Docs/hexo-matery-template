@@ -1,0 +1,45 @@
+version: '2'
+services:
+
+  hexo-matery:
+    image: expm02/hexo-matery-docker:latest
+    container_name: hexo-matery
+    hostname: hexo-matery
+    environment:
+      TZ: Asia/Shanghai
+      LANG: zh_CN.UTF-8
+      LANGUAGE: zh_CN.UTF-8
+      SITE_DOMAIN: ${SITE_DOMAIN}
+      GIT_MAIL: ${GIT_MAIL}
+      GIT_USER: ${GIT_USER}
+      DEPLOY_REPO_NAME: ${DEPLOY_REPO_NAME}
+      DEPLOY_REPO_OWNER: ${DEPLOY_REPO_OWNER}
+    volumes:
+      # 因为 hexo 主要是通过 ssh 发布内容到 Github 仓库的，故此处挂载宿主机的 id_rsa 和 known_hosts 是必须的
+      # known_hosts 是在配置公钥 id_rsa.pub 到 Github 后，执行命令 ssh -T git@github.com 生成的
+      # 详见： https://help.github.com/en/articles/connecting-to-github-with-ssh
+      - ~/.ssh/id_rsa:/root/.ssh/id_rsa
+      - ~/.ssh/known_hosts:/root/.ssh/known_hosts
+      # 把 hexo 数据目录挂载到容器内，执行 generate 时覆盖到工程目录
+      - ./volumes/hexo:/data/hexo
+      # 用于检测流水线中 docker 内部的后台命令是否已执行完成
+      - ./tmp/flag:/tmp/flag
+    ports:
+      # 需要和启动脚本对应，非必要不要改
+      - 4000:4000
+    networks:
+      hexo:
+        ipv4_address: 172.168.45.2
+    restart: on-failure
+
+
+networks:
+  hexo:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet:  172.168.45.0/24
+          gateway: 172.168.45.1
+
+

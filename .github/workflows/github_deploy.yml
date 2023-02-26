@@ -1,0 +1,46 @@
+name: Automatically deploy hexo blog to Github
+on: 
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+  workflow_dispatch:
+    branches:
+      - master
+
+      
+jobs:
+  build-and-deploy-github: 
+    runs-on: ubuntu-latest 
+        
+    steps:
+    - name: Checkout Repository master branch
+      uses: actions/checkout@v2
+
+    - name: Setup Git Infomation
+      run: |-
+        git config --global user.name "${{ vars._GIT_USER }}"
+        git config --global user.email "${{ vars._GIT_MAIL }}"
+
+    - name: Setup Deploy Private Key
+      env:
+        HEXO_DEPLOY_PRIVATE_KEY: ${{ secrets.DEPLOY_PRIVATE_KEY }}
+      run: |
+        mkdir -p ~/.ssh/
+        echo "$HEXO_DEPLOY_PRIVATE_KEY" > ~/.ssh/id_rsa 
+        chmod 400 ~/.ssh/id_rsa
+        ssh-keyscan github.com >> ~/.ssh/known_hosts
+
+    # 运行 nodejs 的 docker 环境
+    - name: Run Hexo Environment
+      run: |
+        bin/run.sh -d "${{ vars._GITHUB_DOMAIN }}" -m "${{ vars._GIT_MAIL }}" -u "${{ vars._GIT_USER }}" -o "${{ vars._GITHUB_DEPLOY_REPO_OWNER }}" -n "${{ vars._GITHUB_DEPLOY_REPO_NAME }}"
+
+    # 构建 Hexo 内容并发布到 Github 仓库
+    # 检查状态的超时时间根据实际流水线耗时设置（不要设置太长，Github 每个月只有 2000 分钟的额度）
+    - name: Build and Deploy Hexo 
+      run: |
+        hexo/generate_deploy.sh -d ON
+        timeout ${{ vars.RUN_TIMEOUT }} hexo/check_flag.sh

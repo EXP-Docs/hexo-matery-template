@@ -1,0 +1,44 @@
+[
+    {
+        "avatar": "/images/avatar/poj.jpg",
+        "name": "ACM-POJ",
+        "introduction": "北大在线测评系统",
+        "url": "http://poj.org/",
+        "title": "前去学习"
+    }, 
+    {
+        "avatar": "/images/avatar/csdn.jpg",
+        "name": "CSDN",
+        "introduction": "中文 IT 博客",
+        "url": "https://blog.csdn.net/lyy289065406/",
+        "title": "前去学习"
+    }, 
+    {
+        "avatar": "/images/avatar/gitee.jpg",
+        "name": "码云",
+        "introduction": "国内开发协作平台",
+        "url": "https://gitee.com/lyy289065406/events",
+        "title": "一探究竟"
+    }, 
+    {
+        "avatar": "/images/avatar/bilibili.jpg",
+        "name": "BiliBili",
+        "introduction": "站长直播间",
+        "url": "https://live.bilibili.com/269706",
+        "title": "前去偷窥"
+    }, 
+    {
+        "avatar": "/images/avatar/baidu.jpg",
+        "name": "熊掌号",
+        "introduction": "百度站长平台",
+        "url": "https://ziyuan.baidu.com/site/index",
+        "title": "一探究竟"
+    }, 
+    {
+        "avatar": "/images/avatar/google-ad.jpg",
+        "name": "谷歌广告",
+        "introduction": "让你的网站变现",
+        "url": "http://www.google.cn/adsense",
+        "title": "一探究竟"
+    }
+]
