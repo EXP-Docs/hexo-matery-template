@@ -232,6 +232,21 @@ profile:
 myProjects:
   enable: true
   data:
+    hexo-matery-template:
+      icon: fas fa-database
+      iconBackground: 'linear-gradient(to bottom right, #62f0e1 0%, #0aab9a 100%)'
+      url: https://github.com/lyy289065406/hexo-matery-template
+      desc: docker 一键部署 Hexo 博客
+    exp-libs-refactor:
+      icon: fas fa-database
+      iconBackground: 'linear-gradient(to bottom right, #c453c7 0%, #a80ead 100%)'
+      url: https://github.com/lyy289065406/exp-libs-refactor/
+      desc: 经验构件库
+    AI-auto-checkin:
+      icon: fas fa-file-alt
+      iconBackground: 'linear-gradient(to bottom right, #b9a90a 0%, #8c8221 100%)'
+      url: https://github.com/lyy289065406/AI-auto-checkin
+      desc: AI 人脸自动考勤
     CTF-Solving-Reports:
       icon: fas fa-file-alt
       iconBackground: 'linear-gradient(to bottom right, #29B6F6 0%, #1E88E5 100%)'
@@ -243,25 +258,10 @@ myProjects:
       url: https://github.com/lyy289065406/POJ-Solving-Reports
       desc: POJ 解题报告
     threat-broadcast:
-      icon: fas fa-database
+      icon: fas fa-file-alt
       iconBackground: 'linear-gradient(to bottom right, #F06292 0%, #EF5350 100%)'
       url: https://github.com/lyy289065406/threat-broadcast
       desc: 威胁情报播报
-    exp-libs-refactor:
-      icon: fas fa-file-alt
-      iconBackground: 'linear-gradient(to bottom right, #c453c7 0%, #a80ead 100%)'
-      url: https://github.com/lyy289065406/exp-libs-refactor/
-      desc: 经验构件库
-    AI-auto-checkin:
-      icon: fas fa-file-alt
-      iconBackground: 'linear-gradient(to bottom right, #b9a90a 0%, #8c8221 100%)'
-      url: https://github.com/lyy289065406/AI-auto-checkin
-      desc: AI 人脸自动考勤
-    kali-docker:
-      icon: fas fa-database
-      iconBackground: 'linear-gradient(to bottom right, #62f0e1 0%, #0aab9a 100%)'
-      url: https://github.com/lyy289065406/kali-docker
-      desc: 一键部署 kali 渗透测试环境
     
 # config my skills informations in about page.
 # If you don't want to display this `My Skills` content, you can deactivate or delete this configuration.
@@ -287,7 +287,7 @@ mySkills:
     Git/SVN:
       background: 'linear-gradient(to right, #3c62c1 0%, #4e72ce 100%)'
       percent: 80%
-    CICD/Jenkins/Ansible:
+    CICD/Actions/Ansible:
       background: 'linear-gradient(to right, #b96320 0%, #dc9965 100%)'
       percent: 50%
     Visual-AI:
