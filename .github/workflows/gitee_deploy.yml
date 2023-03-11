@@ -36,7 +36,7 @@ jobs:
     # 运行 nodejs 的 docker 环境
     - name: Run Hexo Environment
       run: |
-        bin/run.sh -d "${{ vars._GITEE_DOMAIN }}" -u "${{ vars._GIT_USER }}" -m "${{ vars._GIT_MAIL }}" -o "${{ vars._GITEE_DEPLOY_REPO_OWNER }}" -n "${{ vars._GITEE_DEPLOY_REPO_NAME }}"
+        bin/run.sh -p "${{ vars.SITE_PROTOCOL }}" -d "${{ vars._GITEE_DOMAIN }}" -u "${{ vars._GIT_USER }}" -m "${{ vars._GIT_MAIL }}" -o "${{ vars._GITEE_DEPLOY_REPO_OWNER }}" -n "${{ vars._GITEE_DEPLOY_REPO_NAME }}"
 
     # 构建 Hexo 内容并发布到 Gitee 仓库
     # 检查状态的超时时间根据实际流水线耗时设置（不要设置太长，Github 每个月只有 2000 分钟的额度）

@@ -60,10 +60,11 @@
 <summary>运行环境的完整命令参数</summary>
 <br/>
 
-实际上，运行环境的完整命令为: `bin/run.sh|ps1 -d ${SITE_DOMAIN} -u ${GIT_USER} -m ${GIT_MAIL} -n ${DEPLOY_REPO_NAME} -o ${DEPLOY_REPO_OWNER}`
+实际上，运行环境的完整命令为: `bin/run.sh|ps1 -p ${SITE_PROTOCOL} -d ${SITE_DOMAIN} -u ${GIT_USER} -m ${GIT_MAIL} -n ${DEPLOY_REPO_NAME} -o ${DEPLOY_REPO_OWNER}`
 
 其中：
 
+- SITE_PROTOCOL: 站点协议，默认 https ，可以按需修改为 http
 - SITE_DOMAIN: 站点域名, 亦可使用 github/gitee 的 pages 域名，本地默认为 `127.0.0.1:4000`
 - GIT_MAIL: git 命令的 mail 参数
 - GIT_USER: git 命令的 user 参数
@@ -74,7 +75,7 @@
 
 但是如果想在本地发布到 Github/Gitee 仓库，就可以使用完整命令运行 hexo 环境，例如：
 
-- 运行环境: `bin/run.sh -d exp-blog.com -u EXP -m 289065406@qq.com -n articles -o lyy289065406`
+- 运行环境: `bin/run.sh -p https -d exp-blog.com -u EXP -m 289065406@qq.com -n articles -o lyy289065406`
 - 构建 hexo 内容: `hexo/generate.sh|ps1`
 - 发布 hexo 内容到 Github/Gitee 的目标仓库: `hexo/deploy.sh|ps1`
 
@@ -107,6 +108,7 @@
 
 | 变量 | 说明 | 示例 |
 |:---:|:---|:---:|
+| `SITE_PROTOCOL` | 站点协议，默认为 `https` | `https` |
 | `_GITHUB_DOMAIN` | Github Pages 的域名，可以使用 CNAME 解析的自定义域名 | `exp-blog.com` |
 | `_GITHUB_DEPLOY_REPO_NAME` |  接收 hexo 内容的 Github 仓库 | `articles` |
 | `_GITHUB_DEPLOY_REPO_OWNER` | 该 Github 的归属者或组织 | `lyy289065406` |

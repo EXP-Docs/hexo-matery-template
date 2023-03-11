@@ -4,9 +4,10 @@
 # 示例: bin/run_env.ps1 
 #   -s [svc_name]       docker-compose 中的服务名，不指定则启动所有服务
 #   -f [ON/OFF]         使用前台模式启动（默认是后台模式）
+#   -p [protocol]       站点协议，默认 https
 #   -d [domain]         服务域名: 支持 域名、github子域名、IP端口（默认为 127.0.0.1:4000）
-#   -m [GIT_MAIL]    使用 SSH 访问 Github 的用户邮箱
-#   -u [GIT_USER]    使用 SSH 访问 Github 的用户账号
+#   -m [GIT_MAIL]       使用 SSH 访问 Github 的用户邮箱
+#   -u [GIT_USER]       使用 SSH 访问 Github 的用户账号
 #   -n [repo_name]      发布 hexo 的目标 Github 仓库名
 #   -o [repo_owner]     目标 Github 仓库的拥有者或组织
 #------------------------------------------------
@@ -14,6 +15,7 @@
 param(
     [string]$s="", 
     [string]$f="OFF", 
+    [string]$p="https",
     [string]$d="127.0.0.1:4000", 
     [string]$m="289065406@qq.com", 
     [string]$u="lyy289065406", 
@@ -33,6 +35,7 @@ if(![String]::IsNullOrEmpty($f) -and ("ON" -eq $f)) {
 
 
 Write-Host "Going to start ..."
+$ENV:SITE_PROTOCOL=${p}; `
 $ENV:SITE_DOMAIN=${d}; `
 $ENV:GIT_MAIL=${m}; `
 $ENV:GIT_USER=${u}; `

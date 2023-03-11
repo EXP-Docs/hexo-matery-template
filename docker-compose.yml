@@ -9,6 +9,7 @@ services:
       TZ: Asia/Shanghai
       LANG: zh_CN.UTF-8
       LANGUAGE: zh_CN.UTF-8
+      SITE_PROTOCOL: ${SITE_PROTOCOL}
       SITE_DOMAIN: ${SITE_DOMAIN}
       GIT_MAIL: ${GIT_MAIL}
       GIT_USER: ${GIT_USER}

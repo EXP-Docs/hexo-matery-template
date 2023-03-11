@@ -4,6 +4,7 @@
 # 示例: bin/stop.sh
 #------------------------------------------------
 
+SITE_PROTOCOL="any" \
 SITE_DOMAIN="any" \
 GIT_MAIL="any" \
 GIT_USER="any" \
