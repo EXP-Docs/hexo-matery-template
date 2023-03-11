@@ -1,6 +1,6 @@
-# hexo-matery-docker
+# hexo-matery-template
 
-> docker 一键部署 Hexo 博客 : matery 主题（此仓库用于构建镜像）
+> docker 一键部署 Hexo 博客 : matery 主题
 
 ------
 
